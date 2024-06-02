@@ -14,6 +14,12 @@ const InputForm = () => {
       console.log(playerCount, rowsCount, colCount);
       setIsError('');
     }
+    if (isNaN(rowsCount) || isNaN(colCount) || Number(rowsCount) <= 3 || Number(colCount) <= 3) {
+      setIsError('Rows and Columns should be more than 3');
+      return false;
+    }
+    setIsError('');
+    return true;
   };
 
 
