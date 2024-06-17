@@ -1,4 +1,5 @@
 import { render, fireEvent } from '@testing-library/react-native';
+import PrimaryButton from '../../../../../components/base/Form/Button/PrimaryButton';
 
 describe('PrimaryButton Component', () => {
   test('renders with correct title', () => {

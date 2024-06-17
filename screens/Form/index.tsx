@@ -4,17 +4,16 @@ import PrimaryButton from "../../components/base/Form/Button/PrimaryButton";
 import Form from "../../components/base/Form";
 
 const InputForm = () => {
-    const [playerCount, setPlayerCount] = useState(0);
-    const [rowsCount,setRowsCount] = useState(0);
-    const [colCount,setColCount] = useState(0);
+    const [playerCount, setPlayerCount] = useState('');
+    const [rowsCount,setRowsCount] = useState('');
+    const [colCount,setColCount] = useState('');
     const [isError , setIsError] = useState('')
 
   const onPressHandler = () => {
-    if (handleValidation()) {
-      console.log(playerCount, rowsCount, colCount);
-      setIsError('');
+    if (!handleValidation()) {
+      return;
     }
-    if (isNaN(rowsCount) || isNaN(colCount) || Number(rowsCount) <= 3 || Number(colCount) <= 3) {
+    if (isNaN(Number(rowsCount)) || isNaN(Number(colCount)) || Number(rowsCount) <= 3 || Number(colCount) <= 3) {
       setIsError('Rows and Columns should be more than 3');
       return false;
     }
@@ -25,7 +24,6 @@ const InputForm = () => {
 
   const handleValidation = () => {
     if (!playerCount || !rowsCount || !colCount) {
-      console.log('Please fill all the fields');
       setIsError('Please fill all the fields');
       return false;
     } else {
@@ -35,6 +33,7 @@ const InputForm = () => {
   };
   return (
     <View>
+      <Text style={{fontSize: 20, margin: 16, fontWeight:'bold'}}>Grid Game</Text>
       <Form.InputField label={"Player Count"} value={playerCount} onChange={(text: number) => setPlayerCount(text)} />
       <Form.InputField label={"Rows"} value={rowsCount} onChange={(text: number) => setRowsCount(text)} />
       <Form.InputField label={"Columns"} value={colCount} onChange={(text: number) => setColCount(text)} />
